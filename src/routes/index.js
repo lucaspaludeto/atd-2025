@@ -6,9 +6,11 @@ const healthRoutes = require('./health');
 const router = express.Router();
 
 // Mount routes
+const productsRoutes = require('./products');
 router.use('/auth', authRoutes);
 router.use('/checkout', checkoutRoutes);
 router.use('/health', healthRoutes);
+router.use('/products', productsRoutes);
 
 // Root endpoint
 router.get('/', (req, res) => {

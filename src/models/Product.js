@@ -38,5 +38,12 @@ initializeProducts();
 
 module.exports = {
   Product,
-  products
+  products,
+  findAll: () => products.map(p => p.toJSON()),
+  create: (data) => {
+    const id = products.length ? products[products.length - 1].id + 1 : 1;
+    const product = new Product(id, data.name, data.description, data.price, data.stock);
+    products.push(product);
+    return product.toJSON();
+  }
 };

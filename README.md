@@ -235,6 +235,84 @@ Check the health status of the API.
 }
 ```
 
+#### 5. Get All Products
+**GET** `/products`
+
+Returns a list of all products. **Requires authentication.**
+
+**Headers:**
+```
+Authorization: Bearer <your-jwt-token>
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "description": "High-performance laptop for work and gaming",
+      "price": 999.99,
+      "stock": 50,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "description": "Latest model smartphone with advanced features",
+      "price": 699.99,
+      "stock": 30,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "Headphones",
+      "description": "Wireless noise-canceling headphones",
+      "price": 199.99,
+      "stock": 100,
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
+```
+
+#### 6. Create Product
+**POST** `/products`
+
+Creates a new product. **Requires authentication.**
+
+**Headers:**
+```
+Authorization: Bearer <your-jwt-token>
+```
+
+**Request Body:**
+```json
+{
+  "name": "Tablet",
+  "description": "Portable tablet device",
+  "price": 299.99,
+  "stock": 20
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": 4,
+    "name": "Tablet",
+    "description": "Portable tablet device",
+    "price": 299.99,
+    "stock": 20,
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+}
+```
+
 ### Example Usage with cURL
 
 #### Register a new user:
@@ -277,6 +355,25 @@ curl -X POST http://localhost:3000/checkout \
 #### Health check:
 ```bash
 curl -X GET http://localhost:3000/health
+```
+
+#### Get all products (replace TOKEN with actual JWT token):
+```bash
+curl -X GET http://localhost:3000/products \
+  -H "Authorization: Bearer TOKEN"
+```
+
+#### Create a new product (replace TOKEN with actual JWT token):
+```bash
+curl -X POST http://localhost:3000/products \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer TOKEN" \
+  -d '{
+    "name": "Tablet",
+    "description": "Portable tablet device",
+    "price": 299.99,
+    "stock": 20
+  }'
 ```
 
 ### Error Responses
